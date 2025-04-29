@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>You're Feeling Great!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #e6f9f0;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 128, 0, 0.2);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #28a745;
+        }
+
+        .emotion {
+            font-size: 1.3em;
+            color: #333;
+            margin: 15px 0;
+        }
+
+        .gif-container {
+            margin: 20px 0;
+        }
+
+        .gif-container img {
+            width: 300px;
+            border-radius: 12px;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 You're Feeling Happy!</h1>
+        <p class="emotion">Detected Emotion: <strong>{{ emotion|capitalize }}</strong></p>
+
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/3o7abB06u9bNzA8lu8/giphy.gif" alt="Happy GIF">
+        </div>
+        <a href="{{ url_for('start') }}" class="button">Restart Chat</a>
+    </div>
+</body>
+</html>
+ 

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jeevan AI Chatbot</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f0f4f8;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark-mode {
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        #chatbox {
+            width: 60%;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            height: 400px;
+            overflow-y: auto;
+        }
+        .dark-mode #chatbox {
+            background-color: #333;
+            color: #eee;
+        }
+
+        .message {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .user {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .bot {
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        #inputArea {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #calmingGif img {
+            margin-top: 10px;
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        #topBar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px auto;
+            width: 60%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        #topBar h2 {
+            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #topBar .left-btn {
+            margin-right: auto;
+        }
+
+        #topBar .right-btn {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="topBar">
+        <button class="left-btn" onclick="toggleDarkMode()">🌓 Dark Mode</button>
+        <h2>Detected Emotion: {{ emotion|capitalize }}</h2>
+        <button class="right-btn" onclick="window.location.href='https://www.rescue.gov.pk/'">🚨 Emergency Help</button>
+    </div>
+
+    <div id="chatbox">
+        {% for entry in chat_history %}
+            <div class="message"><span class="user">You:</span> {{ entry.user }}</div>
+            <div class="message"><span class="bot">Jeevan AI:</span> {{ entry.bot }}</div>
+        {% endfor %}
+    </div>
+
+    <div id="calmingGif">
+        {% if gif_url %}
+            <img src="{{ gif_url }}" alt="Calming GIF">
+        {% endif %}
+    </div>
+
+    <div id="inputArea">
+        <form method="POST">
+            <input type="text" name="user_message" placeholder="Type your message..." required />
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+    </script>
+
+</body>
+</html>
