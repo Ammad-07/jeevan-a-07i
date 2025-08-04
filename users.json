@@ -1,0 +1,14 @@
+{
+    "example@domain.com": {
+        "name": "Example User",
+        "password": "password123"
+    },
+    "fahadammad391@gmail.com": {
+        "name": "Ammad",
+        "password": "ammad1122"
+    },
+    "nouman@gmail.com": {
+        "name": "nouman",
+        "password": "nouman1122"
+    }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Daily Challenges - JEEVAN AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for toast animation */
+        .toast {
+            visibility: hidden;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #1f2937; /* Gray-800 */
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-blue-200 min-h-screen flex items-center justify-center p-6">
+    <div class="bg-blue-100 w-full max-w-md rounded-lg shadow-lg p-6">
+        <!-- Header -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">🧠 Daily Challenges for Your Emotion</h2>
+
+        <!-- Form -->
+        <form method="POST" onsubmit="showToast()" class="space-y-4">
+            {% for task in challenges %}
+            <div class="flex items-center">
+                <input type="checkbox" name="completed_tasks" value="{{ task }}" id="task{{ loop.index }}"
+                    {% if task in completed_tasks %}checked{% endif %}
+                    class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                <label for="task{{ loop.index }}" class="ml-2 text-gray-700">
+                    {{ task }}
+                </label>
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-200">
+                ✅ Submit Progress
+            </button>
+        </form>
+
+        <!-- Progress Section -->
+        <hr class="my-6 border-gray-300">
+
+       
+
+        <div class="mt-4 space-y-2">
+            <p class="text-gray-700"><strong>🔥 Streak:</strong> {{ streak }} days</p>
+            <p class="text-gray-700"><strong>⭐ XP:</strong> {{ xp }} XP</p>
+            <p class="text-gray-700"><strong>🏅 Level:</strong> {{ level }}</p>
+        </div>
+
+        <!-- Badges Section -->
+        <div class="mt-4">
+            <strong class="text-gray-800">🎖️ Badges:</strong>
+            {% if badges %}
+                <div class="flex flex-wrap gap-2 mt-2">
+                    {% for badge in badges %}
+                        <span class="bg-blue-200 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">{{ badge }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-gray-600 mt-2">No badges yet</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Toast element -->
+    <div id="toast" class="toast">✅ Progress submitted successfully!</div>
+
+    <script>
+        function showToast() {
+            const toast = document.getElementById("toast");
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

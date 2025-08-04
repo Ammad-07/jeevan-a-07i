@@ -100,6 +100,20 @@
         #topBar .right-btn {
             margin-left: auto;
         }
+
+        #challengeButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #challengeButton:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
@@ -113,10 +127,12 @@
     <div id="chatbox">
         {% for entry in chat_history %}
             <div class="message"><span class="user">You:</span> {{ entry.user }}</div>
-            <div class="message"><span class="bot">Jeevan AI:</span> {{ entry.bot }}</div>
+            <div class="message">
+                <span class="bot">Jeevan AI:</span> {{ entry.bot }}
+            </div>
         {% endfor %}
     </div>
-
+    
     <div id="calmingGif">
         {% if gif_url %}
             <img src="{{ gif_url }}" alt="Calming GIF">
@@ -129,6 +145,20 @@
             <button type="submit">Send</button>
         </form>
     </div>
+
+    <!-- Button to go to challenges page -->
+    <div id="challengeButton">
+        <button onclick="window.location.href='/challenges'">Go to Daily Challenges</button>
+    </div>
+<script>
+    const chatEntries = JSON.parse('{{ chat_history | tojson | safe }}');
+    if (chatEntries.length > 0) {
+        const lastResponse = chatEntries[chatEntries.length - 1].bot;
+        const utterance = new SpeechSynthesisUtterance(lastResponse);
+        utterance.lang = 'en-US';
+        window.speechSynthesis.speak(utterance);
+    }
+</script>
 
     <script>
         function toggleDarkMode() {

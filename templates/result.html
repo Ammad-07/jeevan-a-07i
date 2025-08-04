@@ -2,69 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>You're Feeling Great!</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #e6f9f0;
-            text-align: center;
-            padding: 50px;
-        }
-
-        .container {
-            background-color: #ffffff;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 0 20px rgba(0, 128, 0, 0.2);
-            max-width: 600px;
-            margin: auto;
-        }
-
-        h1 {
-            color: #28a745;
-        }
-
-        .emotion {
-            font-size: 1.3em;
-            color: #333;
-            margin: 15px 0;
-        }
-
-        .gif-container {
-            margin: 20px 0;
-        }
-
-        .gif-container img {
-            width: 300px;
-            border-radius: 12px;
-        }
-
-        .button {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>You're Feeling Happy! - JEEVAN AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <h1>🎉 You're Feeling Happy!</h1>
-        <p class="emotion">Detected Emotion: <strong>{{ emotion|capitalize }}</strong></p>
+<body class="bg-blue-200 min-h-screen flex items-center justify-center p-6">
+    <div class="bg-blue-100 w-full max-w-md rounded-lg shadow-lg p-8">
+        <h1 class="text-3xl font-bold text-blue-800 mb-4">🎉 You're Feeling Happy!</h1>
+        <p class="emotion text-lg text-gray-700 mb-6">Detected Emotion: <strong>{{ emotion|capitalize }}</strong></p>
 
-        <div class="gif-container">
-            <img src="https://media.giphy.com/media/3o7abB06u9bNzA8lu8/giphy.gif" alt="Happy GIF">
+        <div class="gif-container mb-6">
+            <img src="https://media.giphy.com/media/3o7abB06u9bNzA8lu8/giphy.gif" alt="Happy GIF" class="w-64 mx-auto rounded-lg">
         </div>
-        <a href="{{ url_for('start') }}" class="button">Restart Chat</a>
+
+        <a href="{{ url_for('start') }}" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-200 inline-block">Restart Chat</a>
     </div>
 </body>
 </html>
- 

@@ -1,0 +1,42 @@
+{
+    "anonymous": {
+        "completed_tasks": [
+            "{'task': 'Stretch or do a quick walk', 'xp': 10}",
+            "{'task': \"Write down why you're angry\", 'xp': 10}"
+        ],
+        "xp": 100,
+        "streak": 6,
+        "badges": [
+            "Wellness Starter"
+        ]
+    },
+    "user1@example.com": {
+        "completed_tasks": [
+            "{'task': 'Check in with your feelings', 'xp': 5}",
+            "{'task': 'Drink a glass of water', 'xp': 5}"
+        ],
+        "xp": 80,
+        "streak": 5,
+        "badges": [
+            "Wellness Starter"
+        ]
+    },
+    "fahadammad391@gmail.com": {
+        "completed_tasks": [
+            "{'task': 'Check in with your feelings', 'xp': 5}",
+            "{'task': 'Drink a glass of water', 'xp': 5}"
+        ],
+        "xp": 40,
+        "streak": 2,
+        "badges": []
+    },
+    "nouman@gmail.com": {
+        "completed_tasks": [
+            "{'task': 'Check in with your feelings', 'xp': 5}",
+            "{'task': 'Drink a glass of water', 'xp': 5}"
+        ],
+        "xp": 20,
+        "streak": 1,
+        "badges": []
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "sad": [
+      {
+        "task": "Write down 1 thing you're grateful for",
+        "xp": 10
+      },
+      {
+        "task": "Take 3 deep breaths and smile",
+        "xp": 10
+      }
+    ],
+    "anxious": [
+      {
+        "task": "Do a 2-minute breathing exercise",
+        "xp": 15
+      },
+      {
+        "task": "Identify 3 things you can see and hear",
+        "xp": 10
+      }
+    ],
+    "angry": [
+      {
+        "task": "Stretch or do a quick walk",
+        "xp": 10
+      },
+      {
+        "task": "Write down why you're angry",
+        "xp": 10
+      }
+    ],
+    "neutral": [
+      {
+        "task": "Check in with your feelings",
+        "xp": 5
+      },
+      {
+        "task": "Drink a glass of water",
+        "xp": 5
+      }
+    ]
+  }
+  

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JEEVAN AI - Sign Up</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes blink {
+      0%, 90% { transform: scaleY(1); }
+      95% { transform: scaleY(0); }
+      100% { transform: scaleY(1); }
+    }
+    .monkey-eyes {
+      animation: blink 3s infinite;
+      transform-origin: center;
+    }
+    .cover-eyes .monkey-eyes {
+      animation: none;
+      transform: scaleY(0);
+    }
+    .cover-eyes .monkey-hand {
+      transform: translateY(-10px) translateX(10px);
+    }
+    .monkey-hand {
+      transition: transform 0.3s ease;
+    }
+    .monkey-mouth {
+      transition: all 0.3s ease;
+    }
+    .cover-eyes .monkey-mouth {
+      transform: scale(1.2);
+    }
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .auth-buttons button {
+      flex: 1;
+    }
+  </style>
+</head>
+<body class="bg-blue-200 flex items-center justify-center min-h-screen">
+  <div class="bg-blue-100 w-80 rounded-lg shadow-lg p-6 relative">
+    <!-- JEEVAN AI Title -->
+    <div class="text-center mb-4">
+      <h1 class="text-2xl font-bold text-gray-800">JEEVAN AI</h1>
+    </div>
+
+    <!-- Monkey Face -->
+    <div class="relative w-24 h-24 mx-auto mb-4" id="monkeyFace">
+      <div class="absolute -top-1 -left-3 w-8 h-8 bg-brown-600 rounded-full"></div>
+      <div class="absolute -top-1 -right-3 w-8 h-8 bg-brown-600 rounded-full"></div>
+      <div class="w-24 h-24 bg-yellow-200 rounded-full border-4 border-brown-600">
+        <div class="absolute top-8 left-6 w-3 h-3 bg-black rounded-full monkey-eyes"></div>
+        <div class="absolute top-8 right-6 w-3 h-3 bg-black rounded-full monkey-eyes"></div>
+        <div class="absolute top-12 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-brown-600 rounded-full monkey-hand"></div>
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-8 h-2 bg-black rounded-full monkey-mouth" id="monkeyMouth"></div>
+        <div class="absolute bottom-5 left-1/2 transform -translate-x-1/2 text-2xl opacity-0 monkey-smile" id="monkeySmile">🙈
+</div>
+      </div>
+    </div>
+
+    <!-- Sign Up Form -->
+    <form id="signupForm" class="space-y-4">
+      <input type="text" id="name" placeholder="Name" required class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500" />
+      <input type="email" id="email" placeholder="Email" required class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500" />
+      <input type="password" id="password" placeholder="Password" required class="w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500" />
+
+      <div class="auth-buttons">
+        <button type="submit" class="bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-500 transition">Sign Up</button>
+        <button type="button" id="loginBtn" class="bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-700 transition">Back to Login</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('password');
+    const monkeyFace = document.getElementById('monkeyFace');
+    const monkeyMouth = document.getElementById('monkeyMouth');
+    const monkeySmile = document.getElementById('monkeySmile');
+
+    passwordInput.addEventListener('focus', () => {
+      monkeyFace.classList.add('cover-eyes');
+      monkeyMouth.classList.add('opacity-0');
+      monkeySmile.classList.remove('opacity-0');
+    });
+
+    passwordInput.addEventListener('blur', () => {
+      monkeyFace.classList.remove('cover-eyes');
+      monkeyMouth.classList.remove('opacity-0');
+      monkeySmile.classList.add('opacity-0');
+    });
+
+    // Handle signup
+    document.getElementById('signupForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      try {
+        const res = await fetch('/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          alert(data.message || 'Sign up successful! Please log in.');
+          window.location.href = '/login';
+        } else {
+          alert(data.message || 'Sign up failed');
+        }
+      } catch (error) {
+        alert('An error occurred during sign up');
+      }
+    });
+
+    // Handle back to login
+    document.getElementById('loginBtn').addEventListener('click', function () {
+      window.location.href = '/login';
+    });
+  </script>
+</body>
+</html>
